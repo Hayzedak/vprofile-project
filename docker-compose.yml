@@ -12,19 +12,18 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
     
-vprocache01:
-  image: memcached
-  ports:
-    - "11211:11211"
+  vprocache01:
+    image: memcached
+    ports:
+      - "11211:11211"
 
-vprormq01:
-  image: rabbitmq
-  ports:
-    - "15672:15672"
-  environment:
-    - RABBITMQ DEFAULT USER=guest 
-    - RABBITMQ DEFAULT PASS=guest
- 
+  vpromq01:
+    image: rabbitmq
+    ports:
+      - "15672:15672"
+    environment:
+      - RABBITMQ DEFAULT USER=guest 
+      - RABBITMQ DEFAULT PASS=guest
  
   vproapp:
     build:
@@ -36,14 +35,11 @@ vprormq01:
     volumes:
       - vproappdata:/usr/local/tomcat/webapps
    
-   vproweb:
+  vproweb:
     build:
       context: ./Dockerfile/web
     image: hayzedak/vprofileweb
     container_name: vproweb
     ports:
       - "80:80"
-    
-volumes:
-  vprodbdata: {}
-  vproappdata: {}    
+        
