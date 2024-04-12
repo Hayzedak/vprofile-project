@@ -2,7 +2,7 @@ version: '3.8'
 services:
   vprodb:
     build:
-      context: ./Dockerfile/db
+      context: ./Docker-files/db
     image: hayzedak/vprofiledb
     container_name: vprodb
     ports:
@@ -22,12 +22,12 @@ services:
     ports:
       - "15672:15672"
     environment:
-      - RABBITMQ DEFAULT USER=guest 
-      - RABBITMQ DEFAULT PASS=guest
+      - RABBITMQ_DEFAULT_USER=guest 
+      - RABBITMQ_DEFAULT_PASS=guest
  
   vproapp:
     build:
-      context: ./Dockerfile/app
+      context: ./Docker-files/app
     image: hayzedak/vprofileapp
     container_name: vproapp
     ports:
@@ -37,7 +37,7 @@ services:
    
   vproweb:
     build:
-      context: ./Dockerfile/web
+      context: ./Docker-files/web
     image: hayzedak/vprofileweb
     container_name: vproweb
     ports:
